@@ -1,19 +1,31 @@
-// Minimal service worker (caching static assets) - register in main for PWA offline
-const CACHE_NAME = 'syllabus-tracker-cache-v1'
-const assetsToCache = ['/', '/index.html', '/src/main.jsx']
+const CACHE_NAME = "syllabus-tracker-cache-v1";
+const urlsToCache = ["/", "/index.html", "/manifest.webmanifest"];
 
-self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(assetsToCache)
-    })
-  )
-})
+// Install SW
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+  );
+});
 
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then((resp) => {
-      return resp || fetch(e.request)
-    })
-  )
-})
+// Fetch
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => response || fetch(event.request))
+  );
+});
+
+// Activate
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames =>
+      Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      )
+    )
+  );
+});
