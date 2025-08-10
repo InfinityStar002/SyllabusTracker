@@ -1,15 +1,11 @@
-// Simple PWA service worker registration
+// lightweight registration; keep in src so it's built/transpiled
 export default function registerServiceWorker() {
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
         .register("/service-worker.js")
-        .then(registration => {
-          console.log("ServiceWorker registered: ", registration);
-        })
-        .catch(error => {
-          console.error("ServiceWorker registration failed: ", error);
-        });
+        .then((reg) => console.log("SW registered", reg.scope))
+        .catch((err) => console.warn("SW registration failed", err));
     });
   }
 }
