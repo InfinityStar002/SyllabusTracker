@@ -1,0 +1,4 @@
+(for deploy platforms that support static headers - optional)
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+*/
