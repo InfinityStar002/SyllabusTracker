@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
-import { saveData } from '../utils/storage'
+import { useEffect } from "react";
+import { saveData } from "../utils/storage";
 
-export default function useAutosave(data, interval = 1500) {
+export default function useAutosave(data, interval = 1200) {
   useEffect(() => {
     const t = setTimeout(() => {
-      saveData(data)
-    }, interval)
-    return () => clearTimeout(t)
-  }, [data, interval])
+      saveData(data);
+    }, interval);
+    return () => clearTimeout(t);
+  }, [data, interval]);
 }
