@@ -2,31 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Material U inspired tokens */
 :root {
-  /* Material You inspired tokens (can be dynamically changed later) */
-  --mu-primary: #0ea5a4;
+  --mu-primary: #0ea5a4; /* teal */
   --mu-on-primary: #ffffff;
-  --mu-surface: rgba(255,255,255,0.72);
-  --mu-surface-2: rgba(255,255,255,0.6);
+  --mu-surface: rgba(255, 255, 255, 0.72);
+  --mu-surface-2: rgba(255, 255, 255, 0.6);
+  --mu-text: #0f172a;
 }
 
-html, body, #root {
-  height: 100%;
+/* App shell background */
+body {
+  background: linear-gradient(180deg, #fbfdff 0%, #f8fafc 100%);
+  color: var(--mu-text);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* translucent top & bottom bars */
-.app-shell {
-  min-height: 100vh;
-  background: linear-gradient(180deg, rgba(250,250,250,0.6), rgba(245,245,245,0.8));
-}
-
-.topbar, .bottombar {
+/* translucent bars */
+.topbar,
+.bottombar {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   background: var(--mu-surface);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-/* small utility for tree nodes */
+/* layout */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 0.6rem 1rem;
+}
+
+.bottombar {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  padding: 0.6rem 1rem;
+}
+
+/* node box */
 .node-box {
   border-radius: 12px;
+}
+
+/* focus ring */
+.ring-mu-primary {
+  box-shadow: 0 0 0 3px rgba(14, 165, 164, 0.18);
+}
+
+/* small responsive container */
+.container {
+  max-width: 1100px;
 }
