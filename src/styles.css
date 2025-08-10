@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Material You inspired tokens (can be dynamically changed later) */
+  --mu-primary: #0ea5a4;
+  --mu-on-primary: #ffffff;
+  --mu-surface: rgba(255,255,255,0.72);
+  --mu-surface-2: rgba(255,255,255,0.6);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* translucent top & bottom bars */
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(250,250,250,0.6), rgba(245,245,245,0.8));
+}
+
+.topbar, .bottombar {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: var(--mu-surface);
+}
+
+/* small utility for tree nodes */
+.node-box {
+  border-radius: 12px;
+}
